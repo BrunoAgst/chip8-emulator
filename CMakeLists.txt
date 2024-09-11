@@ -10,7 +10,8 @@ add_executable(chip_8 main.cpp
         display.h
         display.cpp
         file.h
-        file.cpp)
+        file.cpp
+)
 
 find_package(SDL2 REQUIRED)
 
