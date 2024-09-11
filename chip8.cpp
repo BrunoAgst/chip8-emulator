@@ -4,7 +4,6 @@
 
 #include "chip8.h"
 #include <iostream>
-#include <iomanip>
 #include <random>
 #include "SDL.h"
 
