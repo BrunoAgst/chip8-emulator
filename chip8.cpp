@@ -7,7 +7,6 @@
 #include <random>
 #include "SDL.h"
 
-
 void chip8::execute() {
     unsigned char m1 = memory[pc];
     unsigned char m2 = memory[pc + 1];
@@ -33,7 +32,7 @@ void chip8::selectInstruction(unsigned char opcode, unsigned char d, unsigned ch
                 case 0xEE:
                     sp--;
                     pc = stack[sp];
-                    stack[sp] = 0x00;
+                    //stack[sp] = 0x00;
                     pc += 2;
                     break;
                 default:
@@ -327,28 +326,28 @@ void chip8::fInstruction33(unsigned char vx) {
 }
 
 void chip8::initKeyboard() {
-    keyMapping[0] = SDL_SCANCODE_1;
-    keyMapping[1] = SDL_SCANCODE_2;
-    keyMapping[2] = SDL_SCANCODE_3;
-    keyMapping[3] = SDL_SCANCODE_4;
-    keyMapping[4] = SDL_SCANCODE_Q;
-    keyMapping[5] = SDL_SCANCODE_W;
-    keyMapping[6] = SDL_SCANCODE_E;
-    keyMapping[7] = SDL_SCANCODE_R;
-    keyMapping[8] = SDL_SCANCODE_A;
-    keyMapping[9] = SDL_SCANCODE_S;
-    keyMapping[10] = SDL_SCANCODE_D;
-    keyMapping[11] = SDL_SCANCODE_F;
-    keyMapping[12] = SDL_SCANCODE_Z;
-    keyMapping[13] = SDL_SCANCODE_X;
-    keyMapping[14] = SDL_SCANCODE_C;
-    keyMapping[15] = SDL_SCANCODE_V;
+    keyMapping[0] = SDLK_1;
+    keyMapping[1] = SDLK_2;
+    keyMapping[2] = SDLK_3;
+    keyMapping[3] = SDLK_4;
+    keyMapping[4] = SDLK_q;
+    keyMapping[5] = SDLK_w;
+    keyMapping[6] = SDLK_e;
+    keyMapping[7] = SDLK_r;
+    keyMapping[8] = SDLK_a;
+    keyMapping[9] = SDLK_s;
+    keyMapping[10] = SDLK_d;
+    keyMapping[11] = SDLK_f;
+    keyMapping[12] = SDLK_z;
+    keyMapping[13] = SDLK_x;
+    keyMapping[14] = SDLK_c;
+    keyMapping[15] = SDLK_v;
 }
 
 void chip8::waitForPress(unsigned char vx) {
-    std::cout << "Press Key!!!" << std::endl;
     bool keyP = false;
     while(!keyP){
+        std::cout << "Press Key!!!" << std::endl;
         SDL_PumpEvents();
         const unsigned char* state = SDL_GetKeyboardState(NULL);
         for(int j = 0; j < 16; j++){

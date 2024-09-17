@@ -6,13 +6,14 @@
 #ifndef CHIP_8_CHIP8_H
 #define CHIP_8_CHIP8_H
 
-
 class chip8 {
 public:
     unsigned char chip8ScreenBuffer[64][32] = {0};
     bool drawFlag = false;
     void initCPU(const std::vector<unsigned char>& rom);
     void execute();
+    bool keyState[16]{false};
+    unsigned int keyMapping[16]{0x00};
 private:
     unsigned short stack[16]{0x00};
     unsigned short i = 0x00;
@@ -22,8 +23,6 @@ private:
     unsigned char sound = 0x00;
     unsigned char delay = 0x00;
     unsigned char sp = 0x00;
-    unsigned int keyMapping[16]{0x00};
-    bool keyState[16]{false};
     static unsigned char randomNumber();
     void writeSprite(unsigned char x, unsigned char y, int height);
     void eightInstructions(unsigned char vx, unsigned char vy, unsigned char opcode);
@@ -44,6 +43,5 @@ private:
     void waitForPress(unsigned char vx);
     void kInstructions(unsigned char vx, unsigned char opcode);
 };
-
 
 #endif //CHIP_8_CHIP8_H

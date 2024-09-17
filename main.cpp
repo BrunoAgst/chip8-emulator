@@ -59,6 +59,16 @@ int main(int argc, char* argv[]) {
             if(e.type == SDL_QUIT){
                 running = false;
             }
+            if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP){
+                bool key_pressed = (e.type == SDL_KEYDOWN);
+
+                for(int i = 0; i < 16; i++){
+                    if(e.key.keysym.sym == c.keyMapping[i]){
+                        c.keyState[i] = key_pressed;
+                        break;
+                    }
+                }
+            }
         }
 
         c.execute();
